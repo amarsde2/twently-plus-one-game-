@@ -12,6 +12,7 @@
 
 ## Start of a Game ##
 
+import random
 
 class TwentlyPlusOne: 
     _last = 0
@@ -71,7 +72,7 @@ class TwentlyPlusOne:
         self._resetGameState()
     
         try:
-           
+    
             choice = str(input ("If you want to start first then type F\nIf you want to play second then type S\n"))
     
             if choice == "F":
@@ -80,7 +81,7 @@ class TwentlyPlusOne:
                        self._loseMessage()
                     else: 
                         print("\nYour turn! ")
-                       
+        
                         ninputs = int(input("Enter how many numbers you want to add in list: \n"))
 
                         if ninputs > 0 and ninputs <= 4:
@@ -117,10 +118,9 @@ class TwentlyPlusOne:
                
             elif choice == "S":
               
-                self._computer_allowed = 1
+                self._computer_allowed = random.randint(1, 4)
+
                 self._last = 0
-              
-             
 
                 while self._last < 20:
                    
@@ -143,6 +143,12 @@ class TwentlyPlusOne:
                        
                         ninputs = int(input("\nEnter how many numbers you want to add in list: "))
 
+                        if ninputs > 0 and ninputs <= 4:
+                           pass
+                        else:
+                           print("Wrong Input! You are disqualified from game! ")
+                           self._loseMessage()
+
                         i = 1 
 
                         while i <= ninputs:
@@ -162,7 +168,7 @@ class TwentlyPlusOne:
                                self._computer_allowed = self._computer_allowed
 
                         else: 
-                            print("\n You did not enter input consecutive integers.")
+                            print("\nYou did not enter input consecutive integers.")
                             self._loseMessage()
 
                 self._wonMessage()
